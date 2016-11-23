@@ -10,3 +10,8 @@
 * Porém, ao se **comunicar** com o servidor via HTTP e WebSockets, se faz necessário utilizar **funções impuras**.
 * É importante entender como se trabalha com **JSON** em Elm.
 * É possível (e útil) realizar a **comunicação** entre partes de uma aplicação escrita em JavaScript e Elm.
+
+## [02 - Review](http://courses.knowthen.com/courses/elm-beyond-the-basics/lectures/1463632)
+
+* Uma **aplicação Elm** é composta por *model*, *update* e *view*.
+* Uma **aplicação trivial** possui *apenas um arquivo*, *alguns campos* e *algumas interações*.
