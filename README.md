@@ -35,3 +35,17 @@
 * Ao chamar a view do módulo interno, devemos tomar cuidado para não passar uma mensagem da view externa, que são incompatíveis.
 * Recomenda-se utilizar a função `App.map` para realizar o mapeamento entre tipos para que a view do módulo interno seja chamada com a assinatura de tipos correta.
 * Deve ser analisada a viabilidade de se utilizar a **arquitetura Elm**.
+
+## [05 - Effects - Overview](http://courses.knowthen.com/courses/elm-beyond-the-basics/lectures/1772952)
+
+* Um **efeito** pode ser uma *requisição assíncrona*, uma *conexão por WebSocket* ou *salvar informações* no LocalStorage.
+* Um **efeito** pode ser descrito em como o Elm se comunica com o mundo fora dele.
+* Em Elm utiliza-se **dados imutáveis** e **funcões puras**.
+* As **funções puras** são melhores que as **funções impuras** pois são *fáceis de testar*, *componíveis* e *cacheáveis*.
+* Nós podemos escrever funções puras, mas precisamos de funções impuras.
+* A **manipulação de efeitos** é como **gerenciar estados** na aplicação.
+* Em uma aplicação Elm se escreve apenas **funções puras**, a responsabilidade de **gerenciar estados** é do `Html.App`.
+* Em Elm utiliza-se **comandos** para a **manipulação de estados**.
+* Um **comando** delega o que deve ser feito para outra função. Isso permite manter a **função pura**, pois ela só retorna dados.
+* Outra função pode **receber o comando** e **agir sobre ele**, ou seja, realizar coisas impuras.
+* A função `update` de uma aplicação Elm **dispara um comando** (Command e dados) para uma biblioteca executar e ver se houve sucesso ou não e, por fim, responder para a função `update`.
