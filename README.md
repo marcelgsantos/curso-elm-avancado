@@ -49,3 +49,28 @@
 * Um **comando** delega o que deve ser feito para outra função. Isso permite manter a **função pura**, pois ela só retorna dados.
 * Outra função pode **receber o comando** e **agir sobre ele**, ou seja, realizar coisas impuras.
 * A função `update` de uma aplicação Elm **dispara um comando** (Command e dados) para uma biblioteca executar e ver se houve sucesso ou não e, por fim, responder para a função `update`.
+
+## [06 - Effects - Example (Chuck Norris Joke App)](http://courses.knowthen.com/courses/elm-beyond-the-basics/lectures/1772955)
+
+* Para fazer uma requisição HTTP devemos utilizar **comandos** (que são apenas dados) que são enviados para um lugar onde os efeitos podem ocorrer.
+* Para isso, devemos saber como **criar um comando** e para onde **enviar o comando**.
+* Para fazer **requisições HTTP** deve-se utilizar o pacote `elm-lang/http` e importar o módulo `Http`.
+* Devemos criar uma constante que é um **comando** que pode **gerar mensagens**. Por exemplo, `randomJoke: Cmd Msg`.
+* Assim como o tipo `Html`, o tipo `Cmd` é capaz de **gerar mensagens**.
+* A função `getString` do módulo `Http` recebe uma `String`, ou seja, a **url para consulta** e retorna uma `Request` do tipo `String`.
+* Uma `Request` é um ***alias type*** que descreve uma **requisição HTTP**.
+* Utiliza-se **mensagens** para comunicar um erro ou sucesso em uma **requisição HTTP**.
+* Para transformar erros e/ou sucesso de uma requisição HTTP, devemos **transformar** uma **requisição** em um **comando** utilizando a função `Http.send`.
+* A função `Http.send` recebe dois parâmetros (1) uma função que recebe um `Result` e retorna uma mensagem que a aplicação compreende e (2) uma `Request` e retorna um **comando** ou `Cmd`.
+* Um **comando** é uma **estrutura de dados** que contém (1) uma **requisição** que poderá falhar ou ter sucesso e (2) **mensagens** específicas da aplicação utilizadas para a comunicação de sucesso ou falha de volta para a aplicação.
+* Um **comando** é apenas dados que (1) descrevem o que queremos fazer e (2) como lidar com possíveis resultados.
+* Um **comando** não será executado se ele não for passado para algo que possa executá-lo.
+* Para utilizar **comandos** deve-se utilizar a função `Html.program` ou invés da função  `Html.beginnerProgram`.
+* A função `App.program` deve ser utilizada em aplicações que utilizam **comandos**.
+* A função `App.program` recebe um registro que possui os seguintes campos:
+    * `init` - recebe uma tupla com a **model inicial** e um ou mais **comandos** que podem ser executados no carregamento inicial da aplicação. Por exemplo, `(model, Cmd msg)`.
+    * `update` - recebe uma função que deve retornar uma tupla com a **model modificada** e um ou mais **comandos** que podem ser executados na aplicação. Por exemplo, `(model, Cmd msg)`.
+    * `subscriptions` - recebe uma função que deve receber como parâmetro uma model e retorna uma `Sub` capaz de gerar mensagens.
+    * `view` - a função `view` é responsável pela **representação visual** da aplicação.
+* Podemos utilizar a função `Cmd.none` quando precisarmos retornar um comando, mas sem a necessidade de ser executado.
+* Podemos utilizar a função `Sub.none` quando precisarmos retornar um subscription.
