@@ -1,9 +1,8 @@
-module Login exposing (..)
+module Main exposing (..)
 
 import Html exposing (..)
 import Html.Events exposing (..)
 import Html.Attributes exposing (..)
-import Html.App as App
 
 
 type alias Model =
@@ -40,19 +39,19 @@ view model =
         [ h3 [] [ text "Login Page... So far..." ]
         , Html.form []
             [ input
-                [ type' "text"
+                [ type_ "text"
                 , onInput UsernameInput
                 , placeholder "username"
                 ]
                 []
             , input
-                [ type' "password"
+                [ type_ "password"
                 , onInput PasswordInput
                 , placeholder "password"
                 ]
                 []
             , input
-                [ type' "submit" ]
+                [ type_ "submit" ]
                 [ text "Login" ]
             ]
         , hr [] []
@@ -61,9 +60,9 @@ view model =
         ]
 
 
-main : Program Never
+main : Program Never Model Msg
 main =
-    App.beginnerProgram
+    Html.beginnerProgram
         { model = initModel
         , update = update
         , view = view

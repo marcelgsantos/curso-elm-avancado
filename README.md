@@ -74,3 +74,27 @@
     * `view` - a função `view` é responsável pela **representação visual** da aplicação.
 * Podemos utilizar a função `Cmd.none` quando precisarmos retornar um comando, mas sem a necessidade de ser executado.
 * Podemos utilizar a função `Sub.none` quando precisarmos retornar um subscription.
+
+## [07 - JSON (Decoding JSON -> Elm)](http://courses.knowthen.com/courses/elm-beyond-the-basics/lectures/1772959)
+
+* A decodificação de um JSON em JavaScript pode ser feita de **maneira simples** utilizando a função `JSON.parse` e, através da notação de ponto `.`, acessar as propriedades do objeto retornado.
+* Dado que o Elm é uma *linguagem estática* e *fortemente tipada*, é necessário de um pouco mais de trabalho para a **decodificação de um JSON**. Porém, apesar de trabalhoso, é fácil realizar a decodificação.
+* É necessário manter **forte** e **segura** a garantia que o Elm fornece.
+* Decodificar um JSON é simplesmente *descrever* as **propriedades esperadas** e quais *tipos pertencem*.
+* Se um JSON contém as **propriedades** e **valores esperados**, ele é *transformado em um valor* do Elm. Porém, se não possui o formato esperado, *obtém-se um erro*.
+* Utiliza-se um **decoder** para realizar a decodificação de um JSON em Elm.
+* Para **criar um decoder** é necessário importar o módulo `Json.Decode`.
+* A anotação de tipos `decoder : Decoder String` refere-se a criação de um **decoder de strings**, ou seja, que permite decodificar um JSON em uma string.
+* A função `at` permite *acessar um campo aninhado* de um JSON e **decodificá-lo** para um tipo específico.
+* A função `at` recebe **uma lista** com o *caminho para o campo* a ser acessado e **um decoder** para um *tipo específico*. Por exemplo, `at [ "user", "email" ] string`.
+* Para **realizar a decodificação** utiliza-se a função `decodeString` que recebe um **decoder** como *primeiro argumento* e uma **string à ser decodificada** como *segundo argumento*.
+* O **retorno de uma decodificação** é um `Result` que pode ser um `Err` ou `Ok`.
+* Pode-se *realizar o decoder* de um JSON de uma maneira **mais simples** através da função `Http.get` que **recebe um decoder** como argumento.
+* Neste caso, o **passo de decode** é realizado pela função `Http.get`. Por exemplo, `Http.get url (at [ "user", "email" ] string)`.
+* Em **aplicações reais** costuma-se utilizar JSONs **mais complexos** para representar um registro, por exemplo.
+* Para realizar o decode de **três valores** de um JSON para um **tipo específico** utiliza-se a função `map3`.
+* A função `map3` recebe *quatro parâmetros*. O primeiro é a **função** ou **construtor de tipo** responsável por criar um **valor do tipo especificado** e os outros *três parâmetros* são os **decoders** para cada um dos valores.
+* Em `map3 Person (field "id" int) (field "name" string) (field "age" int)` é realizada a **decodificação de um JSON** no formato `{id: 1, name: "John", age: 25}` para um tipo Person no Elm.
+* Pode-se utilizar a biblioteca `elm-decode-pipeline` para a decodificação de JSON de uma **maneira mais fácil** e com **algumas facilidades** como caso o JSON *tenha um campo opcional* ou *não tenha um formato pré-definido*.
+* Para **instalar a biblioteca** utilize o comando `elm package install NoRedInk/elm-decode-pipeline`.
+* Pode-se utilizar as funções `required` e `optional` da biblioteca `elm-decode-pipeline` para decodificar um campo de forma **obrigatória** e **opcional**.
