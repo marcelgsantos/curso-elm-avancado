@@ -98,3 +98,18 @@
 * Pode-se utilizar a biblioteca `elm-decode-pipeline` para a decodificação de JSON de uma **maneira mais fácil** e com **algumas facilidades** como caso o JSON *tenha um campo opcional* ou *não tenha um formato pré-definido*.
 * Para **instalar a biblioteca** utilize o comando `elm package install NoRedInk/elm-decode-pipeline`.
 * Pode-se utilizar as funções `required` e `optional` da biblioteca `elm-decode-pipeline` para decodificar um campo de forma **obrigatória** e **opcional**.
+
+## [08 - Websockets (Time Streaming Example App)](http://courses.knowthen.com/courses/elm-beyond-the-basics/lectures/1772957)
+
+* Os **websockets** são um padrão para o *estabelecimento* e *manutenção* de uma **conexão com o servidor** permitindo que navegador e servidor *enviem mensagens* entre si.
+* A função `listen` é utilizada para **iniciar a conexão** do websocket com o servidor.
+* Ela recebe dois argumentos: a **url** para *conectar ao servidor* e uma **função** que *recebe uma string* e *retorna uma subscription* capaz de gerar mensagens.
+* Utiliza-se o comando `elm package install elm-lang/websocket` para **instalar o pacote** de websocket.
+* Uma ***subscription*** é uma forma **registrar o interesse** em algo e **ser notificado** se esse algo acontecer. Por exemplo, o interesse em ser notificado por *mensagens enviadas pelo servidor*.
+* As ***subscriptions*** podem ser utilizadas de várias formas no Elm.
+* A função `send` recebe dois argumentos: a **url** para conectar ao servidor e a **mensagem** à ser enviada.
+* Pode-se utilizar a aba Network do Developer Tools para **analisar a conexão** realizada via websocket.
+* É recomendável **terminar a conexão** com o websocket caso o seu uso não seja mais necessário.
+* A função `subscription` é chamada toda vez que a função update é chamada.
+* Ao retornar `Sub.none` da função `subscription` a **conexão é fechada** com o websocket. Isso acontece pois é informado que não existe mais o interesse em ouvir o servidor.
+* Encerrar a conexão com o servidor permite evitar a **utilização desnecessária** de recursos do servidor.
