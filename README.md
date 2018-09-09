@@ -113,3 +113,20 @@
 * A função `subscription` é chamada toda vez que a função update é chamada.
 * Ao retornar `Sub.none` da função `subscription` a **conexão é fechada** com o websocket. Isso acontece pois é informado que não existe mais o interesse em ouvir o servidor.
 * Encerrar a conexão com o servidor permite evitar a **utilização desnecessária** de recursos do servidor.
+
+## [09 - Navigation (Single Page App Routing)](http://courses.knowthen.com/courses/elm-beyond-the-basics/lectures/1772958)
+
+* A navegação sem **atualizar url** possui os contras de *não ser possível favoritar a página* e *não se possível compartilhar a url*.
+* O Elm possui o pacote `Navigation` que permite a **manipulação de urls**.
+* Sugere-se pensar na **barra de endereço** do navegador como um *campo de texto*.
+* A **aplicação** pode *ver as alterações* e *fazer alterações* na barra de endereço do navegador.
+* O módulo `Navigation` possui a função `program` (semelhante a função `Html.program`).
+* A função `Navigation.program` recebe uma função que recebe uma `Location` e retorna uma mensagem caso a **url seja alterada**.
+* É uma forma de transformar a **alteração da url** em uma **mensagem da aplicação** e a aplicação mudar de página.
+* O campo `init` de `program` também deve ser alterado. Ele passa a receber `Location` e retorna `( Model, Cmd Msg )`.
+* A alteração em `init` é necessária para que a aplicação seja **carregada na página correta** ao ser iniciada de acordo com a url.
+* Utiliza-se o comando `elm package install elm-lang/navigation` para **instalar o pacote** `Navigation`.
+* A função recebida por `Navigation.program` recebe `Location`, *inspeciona a url* e, baseado na url, *notifica a aplicação* **através de uma mensagem**.
+* A mensagem `Navigate` é gerada quando se **clica manualmente** no link. Neste caso, a *página é alterada* mas a *url não*.
+* Neste caso, recomenda-se gerar um **comando** que *muda a url*.
+* Utiliza-se a função `newUrl` para *gerar um comando* que **muda a url** e adiciona uma nova entrada no histórico do navegador.
